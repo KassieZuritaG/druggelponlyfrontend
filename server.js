@@ -1,4 +1,4 @@
-//Install express server    
+/*Install express server    
 const express = require('express');
 
 const path = require('path');   
@@ -13,4 +13,15 @@ app.get('/*', function(req,res) {
 });  
 
 // Start the app by listening on the default Heroku port    
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080);*/
+
+
+var Request = require("request");
+
+Request.get("https://shop-druggelp.herokuapp.com", (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    console.dir(JSON.parse(body));
+});
+
