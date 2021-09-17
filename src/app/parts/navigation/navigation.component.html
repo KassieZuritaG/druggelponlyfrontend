@@ -1,0 +1,107 @@
+<nav class=" navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #46acf5;">
+            <a class="navbar-brand" 
+               routerLink="/homepage">
+               <img src="/assets/pildoras.png" width="30" height="30" class="d-inline-block align-top" alt="">
+               Druggelp
+            </a>
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="navbar-nav" *ngIf="!currentUser || currentUser.role == Role.Customer">
+
+            <a class="nav-item nav-link " style="color:#ffffff"
+               routerLink="/product">
+               <img src="/assets/productos.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                 Productos
+            </a>
+            <!--
+            <a class="nav-item nav-link " style="color:#ffffff"
+               routerLink="/order">
+               <img src="/assets/pedidos.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Pedidos
+            </a>
+            <a class="nav-item nav-link " style="color:#ffffff"
+               routerLink="/category/1">
+               <img src="/assets/productos.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                 Productos
+            </a>
+            <a class="nav-item nav-link " style="color:#ffffff"
+               routerLink="/category/2">
+               <img src="/assets/comprar.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Comprar
+            </a>
+            -->
+        </div>
+
+        
+        <div class="navbar-nav" *ngIf="!currentUser || currentUser.role == Role.Customer">
+
+            <a class="nav-item nav-link "
+               routerLink="/category/0">
+                Medicamentos
+            </a>
+            <a class="nav-item nav-link"
+               routerLink="/category/1">
+               Articulos Varios
+            </a>
+            <a class="nav-item nav-link "
+               routerLink="/category/2">
+               Infantil
+            </a>
+            <a class="nav-item nav-link"
+               routerLink="/category/3">
+               Cuidado Personal
+            </a>
+
+        </div>
+      <div class="navbar-nav ml-auto">
+        
+        <!--  
+            <a *ngIf="!currentUser || currentUser.role == Role.Customer"
+                    class="nav-item nav-link " routerLink="/cart">
+                <i class="fas fa-shopping-cart"></i>
+                Carrito
+            </a>
+
+            <a *ngIf="!currentUser || currentUser.role == Role.Employee"
+                    class="nav-item nav-link " routerLink="/seller/product">
+                <i class="fas fa-shopping-cart"></i>
+                Productos
+            </a>
+       -->
+            <ng-container *ngIf="currentUser || isLogged ; else noUser">
+                <a class="nav-item nav-link " routerLink="/order">
+                    <i class="fas fa-list-ul"></i>
+                    Pedidos
+                </a>
+                <a class="nav-item nav-link " routerLink="/profile">
+                    {{name}}
+                </a>
+                <ul class="navbar-nav ml-auto" *ngIf="isLogged">
+                    <li class="nav-item disabled">
+                        <a class="nav-link">
+                            {{userLogged.name}}
+                        </a>
+                    </li>
+                </ul>
+                <img *ngIf="isLogged" src="{{userLogged.photoUrl}}" class="rounded-circle mr-3" style="width: 50px">
+                <a class="nav-item nav-link " (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                    Cerrar sesión
+                </a>
+            </ng-container>
+            <ng-template #noUser>
+                <a class="nav-item nav-link " routerLink="/login">
+                    Ingresar
+                </a>
+                <a class="nav-item nav-link " routerLink="/register">
+                    Registrarse
+                </a>
+            </ng-template>
+        </div>
+    </div>
+</nav>

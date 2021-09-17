@@ -1,0 +1,83 @@
+<br>
+<h1 align="center" >Ingresar</h1>
+<br><br>
+<div >
+
+
+<div class="container" >
+  <div class="row">
+    <div class="col">
+        <div class="alert alert-danger" *ngIf="isInvalid">
+            Usuario o Contraseña invalida.
+        </div>
+        <div class="alert alert-info" *ngIf="isLogout">
+            Ha ingresado correctamente.
+        </div>
+
+        <form #form='ngForm' (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Ingrese email"
+                    required autofocus [(ngModel)]="model.username" #email="ngModel" autocomplete="email" >
+                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                    Email rquerido
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" class="form-control form-control-sm" id="password" name="password"  autocomplete="password"
+                    placeholder="Ingrese contraseña" required [(ngModel)]="model.password" #password='ngModel'>
+                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                    Contraseña requerida.
+                    <!--Email is required--> 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="checkbox" id="remember_me" name="remember-me" [(ngModel)]="model.remembered">
+                    <label for="remember_me" class="inline">Recuérdame</label>
+                    <a class="float-right" routerLink="/register">Registrarse</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button [disabled]="!form.form.valid" type="submit" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
+            </div>
+            
+        </form>
+    </div>
+    <div class="col" align="center">
+        <img src="/assets/logo.png" width="600" height="200">
+        <div class="container">
+            <br>
+            <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="signInWithFB()"><H6>Ingresar con Facebook</H6></button>
+                    </div>
+                <br><br><br>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger btn-lg btn-block" (click)="signInWithGoogle()"><H6>Ingresar con Google</H6></button>
+                    </div>
+            </div>
+        </div>
+    
+    
+    </div>
+</div>
+    <strong>Usuarios de Ejemplo</strong>
+    <table style="width: 100%;" id="sampleLoginTable">
+        <tr>
+            <td><a
+                    (click)="fillLoginFields('customer1@email.com','123')"
+                    href="javascript:void(0)">customer1</a></td>
+            <td><a
+                    (click)="fillLoginFields('employee1@email.com','123')"
+                    href="javascript:void(0)">employee1</a></td>
+            <td><a
+                    (click)="fillLoginFields('manager1@email.com','123')"
+                    href="javascript:void(0)">manager1</a></td>
+        </tr>
+    </table>
+</div>

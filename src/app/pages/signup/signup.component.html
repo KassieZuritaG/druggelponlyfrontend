@@ -1,0 +1,88 @@
+<div class="container">
+  <br>
+  <h1 align="center">Registrarse</h1>
+  <br>
+  <div class="row">
+    <div class="col-md-6" align="center">
+      <img src="/assets/logo1.png" width="300" height="300">
+      <br>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="signInWithFB()">Registrarse con Facebook</button>
+      <button type="button" class="btn btn-danger btn-lg btn-block"  (click)="signInWithGoogle()">Registrarse con Gogle</button>
+    </div>
+    <div class="col-md-6">
+        
+        <div>
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="user.email" type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Enter email" email required autofocus  #email="ngModel">
+                <div  *ngIf="email.invalid && (email.dirty ||email.touched)" >
+                  <div *ngIf="email.errors.required">
+                      Email Requerido.
+                  </div>
+                  <div *ngIf="email.errors.email">
+                      Email Invalido.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Nombre</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="user.name" type="text" class="form-control form-control-sm" id="name" name="name" placeholder="Nombre" required #name="ngModel">
+                <div  *ngIf="name.invalid && (name.dirty ||name.touched)">
+                  <div *ngIf="name.errors.required">
+                      Nombre requerido.
+                  </div>
+                  <div *ngIf="name.errors.minlength">
+                      El nombre debe contener al menos 5 caracteres.
+                  </div>
+                </div>
+              </div>
+               
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Contraseña</label>
+              <div class="col-sm-9">
+                <input  [(ngModel)]="user.password" type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Contraseña" minlength="3" required #password="ngModel">
+                <div  *ngIf="password.invalid && (password.dirty ||password.touched)">
+                  <div *ngIf="password.errors.required">
+                      Contraseña requerida.
+                  </div>
+                  <div *ngIf="password.errors.minlength">
+                      La contraseña debe contener al menos 5 caracteres.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Teléfono</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="user.phone" type="text" class="form-control form-control-sm" id="phone" name="phone" placeholder="Teléfono" required #phone="ngModel" >
+                <div  *ngIf="phone.invalid && (phone.dirty ||phone.touched)">
+                  <div *ngIf="phone.errors.required">
+                      Número de Teléfono requerido.
+                  </div>
+                </div>  
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Dirección</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="user.address" type="text" class="form-control form-control-sm" id="address" name="address" placeholder="Dirección" required #address="ngModel">
+                <div  *ngIf="address.invalid && (address.dirty ||address.touched)">
+                  <div *ngIf="address.errors.required">
+                      Dirección requerida.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Registrarse</button>
+            </div>
+          </form>
+        </div>
+    </div>
+     
+</div>
